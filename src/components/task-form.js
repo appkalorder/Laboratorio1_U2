@@ -1,5 +1,4 @@
 import { LitElement, html, css } from 'lit';
-import { sharedStyles } from '../styles/shared-styles.js';
 
 export class TaskForm extends LitElement {
   static properties = {
@@ -15,7 +14,53 @@ export class TaskForm extends LitElement {
     this.date = '';
   }
 
-  static styles = [sharedStyles];
+  static styles = css`
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        background: #17352b;
+        border-radius: 8px;
+        padding: 24px;
+        color: #fff;
+        box-shadow: 0 2px 8px #0002;
+      }
+      input, textarea {
+        background: #214a3c;
+        color: #fff;
+        border: 1px solid #2f6a55;
+        border-radius: 6px;
+        padding: 10px;
+        font-size: 15px;
+        font-family: inherit;
+        outline: none;
+        width: 100%;
+        box-sizing: border-box;
+        resize: none;
+      }
+      textarea {
+        min-height: 70px;
+        max-width: 100%;
+      }
+      input:focus, textarea:focus {
+        border-color: #019863;
+      }
+      button[type="submit"] {
+        background: #019863;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 0;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+        width: 100%;
+      }
+      button[type="submit"]:hover {
+        background: #027a4e;
+      }
+    `;
 
   handleSubmit(e) {
     e.preventDefault();
@@ -38,8 +83,8 @@ export class TaskForm extends LitElement {
       <form @submit=${this.handleSubmit}>
         <input type="text" placeholder="Título" .value=${this.title} @input=${e => this.title = e.target.value} required />
         <textarea placeholder="Descripción" .value=${this.description} @input=${e => this.description = e.target.value}></textarea>
-        <input type="date" .value=${this.date} @input=${e => this.date = e.target.value} required />
-        <button type="submit" style="margin-top: 0.5rem;">Guardar</button>
+        <input type="datetime-local" .value=${this.date} @input=${e => this.date = e.target.value} required />
+        <button type="submit">Guardar</button>
       </form>
     `;
   }

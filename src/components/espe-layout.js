@@ -9,6 +9,7 @@ export class EspeLayout extends LitElement {
       flex-direction: column;
       min-height: 100vh;
       background-color: #10231c;
+      width: 100%;
     }
     header {
       display: flex;
@@ -18,6 +19,7 @@ export class EspeLayout extends LitElement {
       padding: 12px 40px;
       border-bottom: 1px solid #214a3c;
       color: #fff;
+      height: 40px;
     }
     .icon {
       width: 16px;
@@ -31,15 +33,85 @@ export class EspeLayout extends LitElement {
       gap: 16px;
     }
     .menu {
-       
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      height: 100%;
     }
     .menu .options {
       display: flex;
+      align-items: center;
       font-size: 14px;
       gap: 36px;
+      height: 100%;
+    }
+
+    .menu .add-icons {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .menu .notification-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      border-radius: 8px;
+      background-color: #214a3c;
+      height: 100%;
+      padding: 0 10px;
+    }
+
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      background-color: #214a3c;
+      margin-left: 16px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+
+      color: #fff;
+      padding: 16px;
+      width: 100%;
+      max-width: 960px;
+    }
+
+    .title {
+      padding: 16px;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    .task-options {
+      display: flex;
+      gap: 32px;
+      padding: 0 16px;
+      font-size: 14px;
+      font-weight: bolder;
+      border-bottom: 1px solid #214a3c;
+      height: 100%;
+    }
+
+    .task-options div {
+      padding: 16px 0;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .task-options .opt1{
+      border-bottom: 3px solid #019863;
+    }
+
+    .task-options .opt2 {
+      color: #8ecdb7;
     }
     `;
-    // 36px gap
 
   render() {
     return html`
@@ -76,9 +148,29 @@ export class EspeLayout extends LitElement {
               <div>Calendario</div>
               <div>Notas</div>
             </div>
+            <div class="add-icons">
+              <div class="notification-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"
+                    ></path>
+                  </svg>
+              </div>
+              <div
+                class="profile-icon"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAUzbhRDPH52Ss-Ql1Kstpq8__VDTbphGYY-9UgUHdZixDcApAa_zH_jyNFx7KCFj1Mv0ih-eBAFEYS3IaraBO68eNTolMNgXldxmtwWAEixg7Uh8kPOAQd1pcZmBoZc6Yysk5ETk53EOEDeIwZHq8l2aOzNo_-Gt-WyVP-aQsyNtZhvNLtnP3Kl6aQ3L_0MWEjO-68MeSlaXLXjXVHNzafLx2pC3EX_lVQHhKPO4LE7vh81PRwNfTlCMB6_4YytLwlW9EjimB-7EU");'
+              ></div>
+            </div>
           </div>
         </header>
-        <slot></slot>
+        <div class="content">
+          <div class="title">Mis Tareas</div>
+          <div class="task-options">
+            <div class="opt1">Por Fecha</div>
+            <div class="opt2">Por Prioridad</div>
+          </div>
+          <slot></slot>
+        </div>
       </div>
     `;
   }
